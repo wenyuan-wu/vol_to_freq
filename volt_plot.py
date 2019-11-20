@@ -1,28 +1,42 @@
 import pandas
-import matplotlib as plt
+import matplotlib.pyplot as plt
+import numpy as np
 
-df = pandas.DataFrame(columns=['time', 'input', 'output'])
+# plt.style.use('style/elegant.mplstyle')
 
+df = pandas.DataFrame(columns=['time', 'output'])
 
-# def per_sec(in_file):
-#     for line in in_file:
-#         line = line.split(',')
-#         print(line)
-# line = line.rstrip('\n')
-# line = line.split(',')
-
-# i += 1
-
-
-with open('data.lvm', encoding='utf-8') as infile:
-    i = 0
-    while i in range(0, 10000):
+with open('data_350_450.lvm', encoding='utf-8') as infile:
+    i = 3500000
+    while i in range(3500000, 4500000):
         line = next(infile)
         line = line.rstrip('\n')
         line = line.split(',')
-        df = df.append({'time': float(line[0]), 'input': float(line[1]), 'output': float(line[2])},
-                       ignore_index=True)
+        df = df.append({'time': i, 'output': float(line[1])}, ignore_index=True)
+        print("time: ", i)
         i += 1
 
-print(df)
+t = df['time']
+x = df['output']
 
+fig, ax = plt.subplots()
+ax.plot(t, x)
+ax.set_xlabel('Time [s]')
+ax.set_ylabel('Signal amplitude');
+
+plt.show()
+
+# f_s = 10000
+#
+# from scipy import fftpack
+#
+# X = fftpack.fft(x)
+# freqs = fftpack.fftfreq(len(x)) * f_s
+#
+# fig, ax = plt.subplots()
+#
+# ax.stem(freqs, np.abs(X))
+# ax.set_xlabel('Frequency in Hertz [Hz]')
+# ax.set_ylabel('Frequency Domain (Spectrum) Magnitude')
+#
+# plt.show()
