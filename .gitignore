@@ -1,5 +1,8 @@
 .idea/
+__pycache__/
+plot/
 data.lvm
+data_test.lvm
 dynamic_IVD_E_2_9.lvm
 data_350_450.lvm
 goodluck.csv

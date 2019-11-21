@@ -7,6 +7,9 @@ f_s = 100  # Sampling rate, or number of measurements per second
 t = np.linspace(0, 2, 2 * f_s, endpoint=False)
 x = np.sin(f * 2 * np.pi * t)
 
+print(t)
+print(x)
+
 fig, ax = plt.subplots()
 ax.plot(t, x)
 ax.set_xlabel('Time [s]')
@@ -17,14 +20,19 @@ plt.show()
 from scipy import fftpack
 
 X = fftpack.fft(x)
+# print(X)
+# print(len(t))
+# print(len(X))
 freqs = fftpack.fftfreq(len(x)) * f_s
 
-fig, ax = plt.subplots()
 
-ax.stem(freqs, np.abs(X))
-ax.set_xlabel('Frequency in Hertz [Hz]')
-ax.set_ylabel('Frequency Domain (Spectrum) Magnitude')
-ax.set_xlim(-f_s / 2, f_s / 2)
-ax.set_ylim(-5, 110)
+
+# fig, ax = plt.subplots()
+#
+# ax.stem(freqs, np.abs(X))
+# ax.set_xlabel('Frequency in Hertz [Hz]')
+# ax.set_ylabel('Frequency Domain (Spectrum) Magnitude')
+# ax.set_xlim(-f_s / 2, f_s / 2)
+# ax.set_ylim(-5, 110)
 
 plt.show()
